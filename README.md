@@ -1,81 +1,130 @@
-SmartManuTech IoT Sistema de Monitoreo | Hecho por Pablo Quesada | Big Data Aplicado
+#  SmartManuTech – Sistema IoT de Monitorización en Tiempo Real | Hecho por Pablo Quesada Castellano | Big Data Aplicado
 
-Sistema de monitorización en tiempo real para entornos industriales basado en tecnologías Big Data. Este proyecto simula sensores IoT en máquinas de producción, detecta anomalías y muestra los datos en un dashboard interactivo.
+Sistema de monitorización industrial basado en **Big Data**, desarrollado para simular el uso de sensores IoT en máquinas de producción. Permite detectar anomalías en tiempo real, almacenar datos y visualizarlos mediante un dashboard interactivo.
 
-📌 Descripción
-Este sistema ha sido desarrollado como solución al problema planteado por SmartManuTech, donde el alto volumen de datos generados por sensores IoT dificulta su procesamiento en tiempo real.
+---
+
+## 📌 Descripción
+
+Este proyecto surge como solución al problema de SmartManuTech, donde el gran volumen de datos generado por sensores IoT impide su procesamiento en tiempo real.
 
 La aplicación permite:
 
-Simular datos de sensores IoT
-Detectar anomalías en tiempo real
-Almacenar datos en una base de datos
-Exponer los datos mediante una API REST
-Visualizar el estado del sistema en un dashboard interactivo
+*  Simular datos de sensores IoT
+*  Detectar anomalías en tiempo real
+*  Almacenar datos en base de datos
+*  Exponer datos mediante una API REST
+*  Visualizar el estado del sistema en un dashboard
 
-⚙️ Tecnologías utilizadas
-Python
-FastAPI
-SQLite (simulación de Cassandra)
-HTML, CSS, JavaScript
-Simulación de streaming de datos en tiempo real
+---
 
-🧠 Arquitectura del sistema
-El flujo de datos sigue el siguiente esquema:
+## 🛠 Tecnologías utilizadas
 
-Sensores IoT (simulados) → Procesamiento en Python → Base de datos → API REST → Dashboard
+| Tecnología         | Descripción                             |
+| ------------------ | --------------------------------------- |
+| Python             | Procesamiento de datos y simulación     |
+| FastAPI            | API REST para exponer datos             |
+| SQLite             | Base de datos (simulación de Cassandra) |
+| HTML, CSS, JS      | Dashboard interactivo                   |
+| Streaming simulado | Flujo de datos en tiempo real           |
 
-🚀 Ejecución del proyecto
-1. Clonar el repositorio
+---
+
+## 🧠 Arquitectura del sistema
+
+El sistema sigue un flujo de datos típico de Big Data:
+
+**Sensores IoT (simulados) → Procesamiento → Base de datos → API → Dashboard**
+
+---
+
+## 🚀 Ejecución del proyecto
+
+### 1️⃣ Clonar repositorio
+
+```bash
 git clone https://github.com/pquesadac/trabajoEnfoque_BDAplicado.git
 cd trabajoEnfoque_BDAplicado
-2. Ejecutar el proyecto
+```
+
+---
+
+### 2️⃣ Ejecutar simulador
 
 En una terminal:
 
+```bash
 python simulador.py
+```
 
-Esto iniciará la generación de datos cada 2 segundos.
+ Genera datos cada 2 segundos
 
-3. Ejecutar la API
+---
+
+### 3️⃣ Ejecutar API
+
 En otra terminal:
 
+```bash
 python -m uvicorn api:app --reload --port 8000
+```
 
-La API estará disponible en:
-👉 http://localhost:8000
+ Disponible en: http://localhost:8000
 
-4. Abrir el dashboard
-Abrir el archivo dashboard.html en el navegador.
+---
 
-El dashboard se conectará automáticamente a la API y mostrará:
-Estado de las máquinas
-Alertas en tiempo real
-Estadísticas del sistema
+### 4️⃣ Abrir dashboard
 
-⚠️ Detección de anomalías
-El sistema clasifica las lecturas en tres estados:
-NORMAL
-ADVERTENCIA
-CRÍTICO
+Abrir el archivo:
 
-Estos estados se determinan mediante umbrales definidos para cada sensor.
+```bash
+dashboard.html
+```
 
-📊 Funcionalidades principales
-Generación continua de datos IoT
-Procesamiento en tiempo real
-Almacenamiento estructurado
-API REST con múltiples endpoints
-Dashboard interactivo con actualización automática
+ Mostrará:
 
-🔧 Limitaciones
-Uso de SQLite en lugar de Cassandra (entorno de demostración)
-Datos generados de forma simulada
-No se utiliza Kafka real (simulación de streaming con Python)
+* Estado de máquinas
+* Alertas en tiempo real
+* Estadísticas
 
-🚀 Mejoras futuras
-Implementación real de Apache Kafka
-Uso de Cassandra en entorno distribuido
-Integración de modelos de Machine Learning
-Sistema de alertas por email o SMS
-Despliegue en la nube con Docker
+---
+
+##  Detección de anomalías
+
+El sistema clasifica las lecturas en:
+
+* 🟢 NORMAL
+* 🟡 ADVERTENCIA
+* 🔴 CRÍTICO
+
+Basado en umbrales definidos para cada sensor.
+
+---
+
+## 📊 Funcionalidades
+
+* Generación continua de datos IoT
+* Procesamiento en tiempo real
+* API REST con múltiples endpoints
+* Dashboard dinámico
+* Sistema de alertas
+
+---
+
+## 🔧 Limitaciones
+
+* Uso de SQLite en lugar de Cassandra
+* Datos simulados (no reales)
+* No se utiliza Kafka real (streaming simulado con Python)
+
+---
+
+## 🚀 Mejoras futuras
+
+* Implementación de Apache Kafka
+* Uso de Cassandra en entorno distribuido
+* Modelos de Machine Learning
+* Sistema de notificaciones (email/SMS)
+* Despliegue en la nube con Docker
+
+
