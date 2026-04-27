@@ -1,7 +1,5 @@
 """
-simulador.py — SmartManuTech IoT Sensor Simulador
 Simula sensores IoT, detecta anomalías y almacena en SQLite (equivalente a Cassandra en demo).
-Ejecutar: python simulador.py
 """
 
 import sqlite3
@@ -51,7 +49,6 @@ def detectar_estado(sensor, valor):
 
 
 def generar_lectura(maquina):
-    """Genera valores realistas con picos aleatorios ocasionales."""
     spike = random.random() < 0.12  # 12% de probabilidad de pico
     return {
         "temperatura":          round(random.uniform(60, 80) + (20 if spike else 0), 2),
