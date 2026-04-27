@@ -1,8 +1,4 @@
-"""
-api.py — SmartManuTech FastAPI REST API
-Expone los datos procesados por el simulador para consumo del dashboard.
-Ejecutar: uvicorn api:app --reload --port 8000
-"""
+
 
 import sqlite3
 import datetime
@@ -43,7 +39,6 @@ def root():
 
 @app.get("/lecturas", summary="Últimas lecturas de todos los sensores")
 def get_lecturas(limite: int = Query(50, ge=1, le=500)):
-    """Devuelve las N lecturas más recientes de todos los sensores."""
     return query_db(
         "SELECT * FROM lecturas ORDER BY id DESC LIMIT ?", (limite,)
     )
@@ -51,7 +46,6 @@ def get_lecturas(limite: int = Query(50, ge=1, le=500)):
 
 @app.get("/anomalias", summary="Lecturas con estado ADVERTENCIA o CRITICO")
 def get_anomalias(limite: int = Query(50, ge=1, le=500)):
-    """Devuelve las anomalías detectadas ordenadas por severidad y tiempo."""
     return query_db(
         """SELECT * FROM lecturas
            WHERE estado IN ('ADVERTENCIA','CRITICO')
@@ -63,7 +57,6 @@ def get_anomalias(limite: int = Query(50, ge=1, le=500)):
 
 @app.get("/alertas/count", summary="Conteo de alertas por tipo")
 def get_alertas_count():
-    """Número total de ADVERTENCIAS y CRÍTICOS por sensor."""
     rows = query_db(
         """SELECT sensor, estado, COUNT(*) as total
            FROM lecturas
@@ -76,7 +69,6 @@ def get_alertas_count():
 
 @app.get("/estadisticas", summary="Estadísticas por máquina y sensor")
 def get_estadisticas():
-    """Media, mínimo y máximo de cada sensor por máquina."""
     return query_db(
         """SELECT maquina, sensor,
                   ROUND(AVG(valor), 2) as media,
@@ -104,7 +96,6 @@ def get_estado_maquinas():
 
 @app.get("/resumen", summary="Resumen global del sistema")
 def get_resumen():
-    """Métricas globales: total lecturas, anomalías, críticos."""
     rows = query_db(
         """SELECT
              COUNT(*) as total_lecturas,
